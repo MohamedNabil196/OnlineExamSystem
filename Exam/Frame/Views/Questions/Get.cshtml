@@ -1,0 +1,97 @@
+﻿@model QuestionDapperDTO
+@{
+    ViewData["Title"] = "Get";
+  
+}
+<div class="card" style="width: 18rem;">
+  
+  <div class="card-body">
+   
+                    @if (Model.TypeOfQuestion == 1)
+                {
+
+            <h5 class="card-title">
+                True / FalseQuestion
+            
+            </h5>
+                    
+                }
+                @if (Model.TypeOfQuestion == 2)
+                {
+                    <h5 class="card-title">
+                Fill the blank Question
+                    </h5>
+                }
+            @if (@Model.TypeOfQuestion == 3)
+                {
+                     <h5 class="card-title">
+                Multi Choice Question
+                    </h5>
+                }
+            @if (@Model.TypeOfQuestion == 4)
+                {
+                    <h5 class="card-title">
+                        Essay Question
+                    </h5>
+                }
+        <p class="card-text"> <h6> @Html.DisplayFor(x => x.QContent)</h6></p>
+        <p class="card-text">
+            <h5>
+                The Answer
+            </h5>
+            <h6>
+                @if (Model.TypeOfQuestion == 1)
+                {
+                    @if (Model.answerTF == true)
+                    {
+                        <Label>True</Label>
+
+                    }
+                    @if (Model.answerTF== false)
+                    {
+                        <Label>False</Label>
+
+                    }
+
+                }
+                @if (!(Model.TypeOfQuestion == 1))
+                {
+                    @Html.DisplayFor(x => x.answerContent)
+
+                }
+            </h6>
+        </p>
+        <p class="card-text">
+           
+                @if (Model.TypeOfQuestion == 3)
+                {
+                   <label>Option1</label>
+                <br />
+                    @Html.DisplayFor(x => x.Option1)
+                <br />
+                                   <label>Option2</label>
+                <br />
+                @Html.DisplayFor(x => x.Option2)
+                <br />
+                                       <label>Option3</label>
+                                       <br />
+
+
+                    @Html.DisplayFor(x => x.Option3)
+                <br />
+                                       <label>Option4</label>
+                <br />
+                    @Html.DisplayFor(x => x.Option4)
+
+                    
+
+                }
+                
+           
+        </p>
+    <a asp-action="GetAll" class="btn btn-primary">Back</a>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,117 @@
+﻿@model QuestionViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Question</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateTF">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">True/False</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#history" role="tab" aria-controls="history" aria-selected="false">Multi Choice</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#deals" role="tab" aria-controls="deals" aria-selected="false">Essay & Fill</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Question</h4>
+                                <h6 class="card-subtitle mb-2">Enter your Question</h6>
+                                <div class="form-group">
+                                    <label asp-for="QContent" class="control-label"></label>
+                                    <input asp-for="QContent" class="form-control" />
+                                    <span asp-validation-for="QContent" class="te        xt-danger"></span>
+                                </div>
+                                <div class="tab-content mt-3">
+                                    <div class="tab-pane active" id="description" role="tabpanel">
+                                        <p class="card-text">It is the seventh most populous city in Italy, at the heart of a metropolitan area of about one million people. </p>
+                                        <div id="input11" class="form-group">
+                                            <label asp-for="answerTF" class="control-label"></label>
+                                            <input asp-for="answerTF" class="form-control" />
+                                            <span asp-validation-for="answerTF" class="text-danger"></span>
+                                        </div>
+                                        <a href="#" class="card-link text-danger">Read more</a>
+                                    </div>
+
+                                    <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">
+                                        <div id="input33">
+
+                                            <div class="form-group">
+                                                <label asp-for="Option1" class=" control-label"></label>
+                                                <input asp-for="Option1" class=" form-control" />
+                                                <span asp-validation-for="Option1" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Option2" class=" control-label"></label>
+                                                <input asp-for="Option2" class=" form-control" />
+                                                <span asp-validation-for="Option2" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Option3" class=" control-label"></label>
+                                                <input asp-for="Option3" class=" form-control" />
+                                                <span asp-validation-for="Option3" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Option4" class="control-label"></label>
+                                                <input asp-for="Option4" class="form-control" />
+                                                <span asp-validation-for="Option4" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="card-link text-danger">Read more</a>
+                                    </div>
+
+                                    <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">
+                                        <div id="input22" class="form-group">
+                                            <label asp-for="answerContent" class="  control-label"></label>
+                                            <input asp-for="answerContent" class=" form-control" />
+                                            <span asp-validation-for="answerContent" class="text-danger"></span>
+                                        </div>                            <a href="#" class="btn btn-danger btn-sm">Get Deals</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="points" class="control-label"></label>
+                <input asp-for="points" class="form-control" />
+                <span asp-validation-for="points" class="text-danger"></span>
+            </div>
+                   <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            @Html.Hidden("ExaminationId", null, new { id = "ExaminationId" })
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script src="~/jsfiles/Question.js"></script>
+       
+    }
+
+}

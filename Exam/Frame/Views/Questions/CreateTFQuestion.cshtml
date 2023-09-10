@@ -1,0 +1,51 @@
+﻿@model QuestionViewModelTF
+
+@{
+    ViewData["Title"] = "CreateTFQuestion";
+   
+}
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateTF">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QContent" class="control-label"></label>
+                <input asp-for="QContent" class="form-control" />
+                <span asp-validation-for="QContent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="answerTF" class="control-label">Select the Correct Answer:</label>
+                <div>
+                    <input type="radio" asp-for="answerTF" value="True" /> True
+                </div>
+                <div>
+                    <input type="radio" asp-for="answerTF" value="False" /> False
+                </div>
+                
+            </div>
+            @*<div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="answerTF" /> @Html.DisplayNameFor(model => model.answerTF)
+                </label>
+            </div>*@
+            @Html.HiddenFor(model => model.TypeOfQuestion)
+            @Html.HiddenFor(model => model.ExaminationId)
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

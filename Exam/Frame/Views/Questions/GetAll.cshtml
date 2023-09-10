@@ -1,0 +1,115 @@
+﻿@*@model PagedList<GetQuestionDTO>
+*@
+@model IEnumerable< QuestionDapperDTO>
+
+@{
+    ViewData["Title"] = "GetList";
+   // Layout = "_Layout";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h1>AllQuestions</h1>
+<div class="row" style="background-color:ghostwhite">
+    <div class="col-4">
+        <a asp-action="createTFQuestion" asp-route-id="1" class="btn btn-primary">Add True/False Question</a> <br />
+
+    </div>
+    <div class="col-4">
+        <a asp-action="CreateEssayQuestion" asp-route-id="1" class="btn btn-primary">Add Essay Question</a> <br />
+
+    </div>
+    <div class="col-4">
+        <a asp-action="CreateMultiChoice" asp-route-id="1" class="btn btn-primary">Add MultiChoice Question</a>
+
+    </div>
+ 
+   
+</div>
+<p>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Question
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+                Correct Answer
+            </th>
+            <th></th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QContent)
+                </td>
+                @if(@item.TypeOfQuestion==1)
+                {
+                 <td>
+                    True / False
+                </td>
+                }
+                @if(@item.TypeOfQuestion==2)
+                {
+                 <td>
+                   Fill the blank
+                </td>
+                }
+                @if(@item.TypeOfQuestion==3)
+                {
+                <td>
+                    Multi Choice
+                </td>
+                }
+                @if(@item.TypeOfQuestion==4)
+                {
+                 <td>
+                    Essay
+                </td>
+                }
+                <td>
+                    @if(item.TypeOfQuestion==1)
+                    {
+                        @if (item.answerTF == true )
+                        {
+                            <Label>True</Label>
+
+                        }
+                         @if (item.answerTF == false )
+                        {
+                              <Label>False</Label>
+
+                        }
+
+                    }
+                    @if (!(item.TypeOfQuestion == 1))
+                    {
+                    @Html.DisplayFor(modelItem => item.answerContent)
+
+                    }
+                </td>
+               <td>
+                    
+                        <a asp-action="Get" asp-route-id="@item.Id" class="btn btn-primary">Details</a> <br />
+
+                   
+               </td>
+            </tr>
+        }
+    </tbody>
+</table>
